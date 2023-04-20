@@ -1,0 +1,18 @@
+use("platzi_store")
+db.products.insertOne({
+    name: "Product 1",
+    price: 1000
+})
+
+//El playground muestra el output de la ultima ejecución (comprobar con query.mongodb)
+db.products.insertOne({
+    name: "Product 2",
+    price: 100
+})
+
+
+db.products.insertOne({
+    _id: 3,
+    name: "Product 3",
+    price: 300
+})
