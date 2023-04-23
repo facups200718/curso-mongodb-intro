@@ -16,3 +16,5 @@ db.products.insertOne({
     name: "Product 3",
     price: 300
 })
+
+//Si inserto un duplicado, me tira error mongodb
