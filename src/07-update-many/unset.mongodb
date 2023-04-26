@@ -1,0 +1,13 @@
+use("sample_training")
+
+db.zips.updateMany(
+    {
+        state: "OH"
+    },
+    {
+        $unset: {
+            city: ""
+        }
+    }
+)
+db.zips.find({ state: "OH" })
