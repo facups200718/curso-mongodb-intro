@@ -1,0 +1,17 @@
+use("platzi_store")
+
+// eliminar solo un documento
+db.products.deleteOne({ _id: 1 });
+
+// eliminar todos los que coincidan con la consulta
+db.products.deleteMany({
+    price: 100
+})
+
+// Elimina todos los documentos de la collection, pero mantiene la collection
+db.products.deleteMany({})
+
+// OJO: eliminar la collection 
+db.products.drop()
+
+db.products.find()
