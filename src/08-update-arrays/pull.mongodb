@@ -1,0 +1,34 @@
+use("platzi_store")
+
+
+//Saca TODOS los elementos del array que tengan este valor de un documento
+db.inventory.updateOne( { _id: 4 },
+    {
+        $pull: {
+            tags: "headphone"
+        }
+    }
+)
+
+//Saca TODOS los elementos del array que tengan este valor de TODOS los docs
+db.inventory.updateMany( {},
+    {
+        $pull: {
+            tags: "headphone"
+        }
+    }
+)
+
+//Saca TODOS los elementos del array que tengan estos valores de TODOS los docs
+db.inventory.updateMany( {},
+    {
+        $pull: {
+            $in: {
+                tags: [
+                    "instruction",
+                    "manual"
+                ]
+            }
+        }
+    }
+)

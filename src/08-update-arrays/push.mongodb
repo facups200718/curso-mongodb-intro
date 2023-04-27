@@ -1,0 +1,47 @@
+use("platzi_store")
+
+//Un elemento a un array
+db.inventory.updateOne( { _id: 4 },
+    {
+        $push: {
+            tags: "headphone"
+        }
+    }
+)
+
+//Varios elementos a un array
+db.inventory.updateOne( { _id: 3 },
+    {
+        $push: {
+            tags: {
+                $each: [
+                    "instruction", 
+                    "manual"
+                ]
+            }
+        }
+    }
+)
+
+//Agregar elemento y que no se repita
+db.inventory.updateOne( { _id: 5 },
+    {
+        $addToSet: {
+            tags: "school"
+        }
+    }
+)
+
+//Agregar varios elementos y que no se repitan
+db.inventory.updateOne( { _id: 1 },
+    {
+        $addToSet: {
+            tags: {
+                $each: [
+                    "school",
+                    "book"
+                ]
+            }
+        }
+    }
+)
