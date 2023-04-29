@@ -1,0 +1,13 @@
+//Básicamente projection es elegir que campos querés obtener en especifico 
+//de un documento o de una serie de docs
+use("sample_training")
+
+db.trips.find(
+    //query
+    { tripduration: { $gte: 500 } },
+    //projections
+    { tripduration: 1, usertype: 1 }
+)
+//El 1 de tripduration y de usertype indica que queremos que el campo esté incluido
+//en nuestro resultado. Caso contrario, sería 0.
+//El resto de los campos se excluyen automáticamente en el caso de que usemos 1, excepto el _id.
