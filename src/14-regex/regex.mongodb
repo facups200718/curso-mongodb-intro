@@ -1,0 +1,23 @@
+use("platzi_store")
+//Las comillas solo se pueden usar cuando buscamos el texto completo
+db.inventory.find({ "item.description": "Single line description." })
+
+//Si queremos buscar por una cadena de texto en especifico pero que no sea el texto entero necesariamente
+db.inventory.find({ "item.description": /line description/ })
+//Podemos ser mas explicitos
+db.inventory.find({ "item.description": { $regex: /line description/ } })
+
+
+//La "i" indica que se ignore el case del texto
+db.inventory.find({ "item.description": { $regex: /LIne deSCriptiON/i } })
+
+//El $ al final de la palabra indica que queremos que la palabra esté al final del texto
+db.inventory.find({ "item.description": { $regex: /line$/i } })
+
+//El ^ al comienzo de la palabra indica que queremos que la palabra esté al principio del texto
+db.inventory.find({ "item.description": { $regex: /^single/i } })
+
+//La "m" despues de la "i" indica que se maneja la búsqueda por línea y no por todo el string
+//O sea, tiene en cuenta los saltos de línea (\n)
+//"m" es por "multiline"
+db.inventory.find({ "item.description": { $regex: /^s/im } })
