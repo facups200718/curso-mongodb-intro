@@ -1,0 +1,13 @@
+use("platzi_store")
+
+//Son los mismo. El operador $eq (equals) viene de forma implicita en el primero
+db.inventory.find({ qty: 20 })
+db.inventory.find({ qty: { $eq: 20 }})
+
+//Cuando queremos buscar un subdocumento, el nombre del campo y del subcampo van entre comillas si o si
+db.inventory.find({ "item.name": "ab" })
+db.inventory.find({ "item.name": { $eq: "ab" } })
+
+//$ne es not equal
+db.inventory.find({ qty: { $ne: 20 }})
+db.inventory.find({ "item.name": { $ne: "ab" } })
