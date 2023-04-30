@@ -1,0 +1,61 @@
+use("platzi_store")
+//$in sirve para valores y arrays
+//Se buscan los documentos que en el array de tags tenga ALGUNO de estos tagss
+db.inventory.find(
+    {
+        tags: {
+            $in: ["electronics", "book"]
+        }
+    }
+)
+
+//$nin lo mismo que el $in pero CASI al reves
+//te trae los docs que no tienen NINGUNO de los elementos del array en el array de qty
+db.inventory.find(
+    {
+        qty: {
+            $in: [20, 25]
+        }
+    }
+)
+
+//$all lo que hace es que te traiga los docs que tenga en el array de tags TODOS los elementos
+//Seria el verdadero opuesto al $nin
+db.inventory.find(
+    {
+        tags: {
+            $all: ["school", "book"]
+        }
+    }
+)
+
+//$size seria en este caso para indicar que se busquen los docs con arrays de tags de 2 elementos
+db.inventory.find(
+    {
+        tags: {
+            $size: 2
+        }
+    }
+)
+
+//$elemMatch sirve para cuando tenemos arrays de subdocumentos 
+//en este caso sirve para obtener los documentos que tienen en su array de results por lo menos un product "xyz"
+db.survey.find({
+    results: {
+        $elemMatch: {
+            product: "xyz"
+        }
+    }
+})
+
+//Otro ejemplo
+db.survey.find({
+    results: {
+        $elemMatch: {
+            product: "xyz",
+            score: {
+                $gte: 7
+            }
+        }
+    }
+})
