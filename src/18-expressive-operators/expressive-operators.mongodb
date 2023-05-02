@@ -1,0 +1,27 @@
+use("platzi_store")
+
+// db.monthlyBudget.find(
+//     { 
+//         spent: {
+//             $gte: 100
+//         }
+//     }
+// )
+
+//Otra forma de hacer lo de arriba es con expressive operator
+db.monthlyBudget.find(
+    {
+        $expr: {
+            $gte: ["$spent", 100]
+        }
+    }
+)
+
+//Ejemplos que muestran el potencial de $expr
+db.monthlyBudget.find(
+    {
+        $expr: {
+            $gte: ["$spent", "$budget"]
+        }
+    }
+)
