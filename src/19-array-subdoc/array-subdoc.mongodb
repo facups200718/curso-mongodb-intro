@@ -1,0 +1,36 @@
+use("sample_training")
+
+db.trips.findOne(
+    {
+        "start station location.type": "Point"
+    }
+)
+
+db.companies.find(
+    //Query
+    {
+        //Con el 0 agarramos el primer elemento del array
+        "relationships.0.person.first_name": "Mark"
+    },
+    //projectors
+    {
+        name: 1,
+        relationships: 1
+    }
+)
+
+//Asi puedo recuperar por cualquier elemento de los subdocs
+db.companies.find(
+    {
+        relationships: {
+            $elemMatch: {
+                "person.first_name": "Mark"
+            }
+        }
+    },
+    //projectors
+    {
+        name: 1,
+        relationships: 1
+    }
+)
