@@ -1,0 +1,54 @@
+use("sample_airbnb")
+
+db.listingsAndReviews.find(
+    {
+        amenities: "Wifi"
+    },
+    {
+        price: 1,
+        amenities: 1
+    }
+)
+
+
+//lo mismo de arriba pero con aggregate
+db.listingsAndReviews.aggregate(
+    [
+        {
+            $match: {
+                amenities: "Wifi" //find (query)
+            }
+        },
+        {
+            $project: {
+                price: 1, //project
+                amenities: 1
+            }
+        }
+    ]
+)
+
+//lo mismo de arriba pero con aggregate
+db.listingsAndReviews.aggregate(
+    [
+        {
+            $match: {
+                amenities: "Wifi" //find (query)
+            }
+        },
+        {
+            $project: {
+                address: 1 //project
+            }
+        },
+        {
+            $group: {
+                _id: "$address.country", //Es como un GROUP BY de SQL
+                count: {
+                    $sum: 1 //Acá lo que decimos es que se sume 1 por cada address
+                }
+            }
+        }
+    ]
+)
+        
