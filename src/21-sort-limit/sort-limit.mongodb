@@ -1,0 +1,13 @@
+use("sample_training")
+
+db.zips.find(
+    {
+        pop: {
+            $gte: 100
+        }
+    }
+).sort(
+    {
+        pop: -1 // 1 = ascendente / -1 = descendente
+    }
+).limit(2) //Estoy diciendo entonces que quiero los 2 documentos con mayor densidad de población

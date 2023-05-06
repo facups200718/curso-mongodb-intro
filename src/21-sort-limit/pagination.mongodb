@@ -1,0 +1,6 @@
+use("platzi_store")
+
+db.categories
+    .find()
+    .skip(2) //salteate 2 elementos antes de arrancar a contar los 3 documentos que recupero
+    .limit(3)
